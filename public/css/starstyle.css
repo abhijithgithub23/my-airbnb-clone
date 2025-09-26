@@ -1,0 +1,24 @@
+/* REVIEW PAGE -------------------------------------------------------------------------------------*/
+.rating {
+  direction: rtl; /* flip order for hover animation */
+  unicode-bidi: bidi-override;
+}
+.rating input {
+  display: none;
+}
+.rating label {
+  font-size: 2rem;
+  color: #ddd;
+  cursor: pointer;
+}
+.rating input:checked ~ label,
+.rating label:hover,
+.rating label:hover ~ label {
+  color: gold;
+}
+
+.review-submit-btn:hover {
+  background-color: gold !important;
+  color: black !important;
+  border-color: white !important;
+}
