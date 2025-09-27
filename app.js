@@ -42,20 +42,84 @@ const ExpressError=require("./utils/ExpressError.js");
 const mongoose=require("mongoose");                         
 //Connecting MongoDB
 
-// const MONGO_URL="mongodb://127.0.0.1:27017/airbnb";  
-const dbUrl=process.env.ATLASDB_URL;  
+const MONGO_URL="mongodb://127.0.0.1:27017/airbnb";  
+// const dbUrl=process.env.ATLASDB_URL;  
 
 main().then(()=>{console.log("DB Connected");}).catch((err)=>{console.log(err);});
 async function main() {
-    await mongoose.connect(dbUrl);
+    await mongoose.connect(MONGO_URL);
 }
+
+//hemlet
+const helmet = require('helmet');
+
+app.use(
+  helmet.contentSecurityPolicy({
+    directives: {
+      defaultSrc: ["'self'"],
+
+      scriptSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        "https://api.mapbox.com",
+        "https://cdn.jsdelivr.net",
+        "https://cdnjs.cloudflare.com"
+      ],
+
+      styleSrc: [
+        "'self'",
+        "'unsafe-inline'",
+        "https://fonts.googleapis.com",
+        "https://cdn.jsdelivr.net",
+        "https://cdnjs.cloudflare.com",
+        "https://api.mapbox.com"
+      ],
+
+      imgSrc: [
+        "'self'",
+        "data:",
+        "https://api.mapbox.com",
+        "https://images.unsplash.com",
+        "https://plus.unsplash.com",
+        "https://res.cloudinary.com"
+      ],
+
+      fontSrc: [
+        "'self'",
+        "https://fonts.gstatic.com",
+        "https://cdnjs.cloudflare.com"
+      ],
+
+      connectSrc: [
+        "'self'",
+        "https://api.mapbox.com",
+        "https://cdn.jsdelivr.net",
+        "https://events.mapbox.com"   // analytics endpoint
+      ],
+
+      workerSrc: [
+        "'self'",
+        "blob:"                       // allow Mapbox web workers
+      ],
+
+      objectSrc: ["'none'"],
+      frameAncestors: ["'none'"]
+    }
+  })
+);
+
+
+
 
 // Session------------------------------------------------------------------------
 const session=require("express-session");    
 const MongoStore=require("connect-mongo");        
 const cookie = require("express-session/session/cookie.js");
 
+const IN_PROD = process.env.NODE_ENV === 'production';
+
 //Session Options for Mongo storage online
+
 const store=MongoStore.create({
     mongoUrl: dbUrl,
     crypto:{
@@ -78,6 +142,8 @@ const sessionOptions={
         expires: Date.now() + 7 * 24 * 60 * 60 * 1000,
         maxAge: 7 * 24 * 60 * 60 * 1000,
         httpOnly: true, 
+        secure: IN_PROD,
+        sameSite: 'lax'
     }
 };
 app.use(session(sessionOptions));   
