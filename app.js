@@ -42,12 +42,12 @@ const ExpressError=require("./utils/ExpressError.js");
 const mongoose=require("mongoose");                         
 //Connecting MongoDB
 
-const MONGO_URL="mongodb://127.0.0.1:27017/airbnb";  
-// const dbUrl=process.env.ATLASDB_URL;  
+// const MONGO_URL="mongodb://127.0.0.1:27017/airbnb";  
+const dbUrl=process.env.ATLASDB_URL;  
 
 main().then(()=>{console.log("DB Connected");}).catch((err)=>{console.log(err);});
 async function main() {
-    await mongoose.connect(MONGO_URL);
+    await mongoose.connect(dbUrl);
 }
 
 //hemlet
@@ -117,6 +117,7 @@ const MongoStore=require("connect-mongo");
 const cookie = require("express-session/session/cookie.js");
 
 const IN_PROD = process.env.NODE_ENV === 'production';
+if (IN_PROD) app.set('trust proxy', 1);
 
 //Session Options for Mongo storage online
 
