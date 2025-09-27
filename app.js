@@ -60,7 +60,7 @@ app.use(
 
       scriptSrc: [
         "'self'",
-        
+        "'unsafe-inline'",
         "https://api.mapbox.com",
         "https://cdn.jsdelivr.net",
         "https://cdnjs.cloudflare.com"
@@ -68,7 +68,7 @@ app.use(
 
       styleSrc: [
         "'self'",
-        
+        "'unsafe-inline'",
         "https://fonts.googleapis.com",
         "https://cdn.jsdelivr.net",
         "https://cdnjs.cloudflare.com",
