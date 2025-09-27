@@ -1,5 +1,50 @@
 Website Link : https://my-airbnb-clone-8989.onrender.com/listings
 
+
+
+# Airbnb Clone (Server-rendered) — MVC
+
+A server-rendered web application inspired by Airbnb, built with Node.js, Express and MongoDB, following the Model-View-Controller (MVC) architecture. Views are rendered using EJS. Users can create and manage property listings, upload images, search by location, and view interactive maps. Authentication and authorization are implemented for secure access.
+
+## Key points
+- Server-rendered application (EJS views) — not a React single page app.  
+- Project architecture follows the MVC pattern (Models, Views, Controllers).
+
+## Features
+- User registration and authentication (local and OAuth via Passport)  
+- Create, edit and delete listings with image upload (Cloudinary)  
+- Location-based listing and interactive maps (Mapbox / Google Maps)  
+- Search and category filters for listings  
+- Reviews and ratings for listings  
+- Responsive UI (Bootstrap / custom CSS)  
+- Session handling and authorization (role checks for owners/admins)
+
+## Technology stack
+- Node.js, Express  
+- MongoDB (MongoDB Atlas) with Mongoose  
+- EJS for server-side rendering (views)  
+- Passport.js for authentication (local + OAuth providers)  
+- Cloudinary for image storage  
+- Mapbox (or Google Maps) for geocoding and maps  
+- Bootstrap 5 and custom CSS for UI  
+
+## Project structure (recommended / example)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Airbnb Clone – Full Stack - MVC Model
 A server-rendered web application inspired by Airbnb, built with Node.js, Express and MongoDB, following the Model-View-Controller (MVC) architecture. Views are rendered using EJS. Users can create and manage property listings, upload images, search by location, and view interactive maps. Authentication and authorization are implemented for secure access.
 
